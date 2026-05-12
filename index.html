@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VLMIS Training Resources | Zambia MoH EPI</title>
+<style>
+  :root {
+    --teal:#028090; --teal-dark:#015F6B; --teal-light:#E0F4F6;
+    --navy:#1A3558; --green:#198744; --green-light:#E8F5E9;
+    --amber:#E77F2A; --amber-light:#FFF3E0;
+    --purple:#5C35A0; --purple-light:#EDE7F6;
+    --gray:#546E7A; --gray-light:#ECEFF1;
+    --white:#FFFFFF; --off-white:#F7FAFB; --black:#212121;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--off-white);color:var(--black);line-height:1.6;}
+
+  /* HERO */
+  .hero{background:var(--navy);color:#fff;padding:48px 24px 56px;text-align:center;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;border-radius:50%;background:rgba(2,128,144,0.15);}
+  .hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,0.04);}
+  .hero-badge{display:inline-block;background:var(--teal);color:#fff;font-size:11px;font-weight:700;letter-spacing:2px;padding:5px 16px;border-radius:20px;margin-bottom:20px;text-transform:uppercase;}
+  .hero h1{font-size:32px;font-weight:700;margin-bottom:10px;line-height:1.2;position:relative;}
+  .hero h1 span{color:#7FD8E0;}
+  .hero p{font-size:15px;color:rgba(255,255,255,0.75);max-width:540px;margin:0 auto 24px;position:relative;}
+  .hero-meta{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;position:relative;}
+  .hero-meta div{background:rgba(255,255,255,0.10);border-radius:8px;padding:10px 18px;text-align:center;}
+  .hero-meta .n{font-size:18px;font-weight:700;color:#fff;}
+  .hero-meta .l{font-size:10px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
+
+  /* NOTICE */
+  .notice{background:var(--amber-light);border-top:4px solid var(--amber);padding:14px 24px;text-align:center;font-size:13px;color:#6B3A0F;}
+  .notice strong{color:var(--amber);}
+
+  /* MAIN */
+  .container{max-width:960px;margin:0 auto;padding:40px 20px 60px;}
+
+  /* SECTION */
+  .section{margin-bottom:48px;}
+  .section-hdr{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--gray-light);}
+  .section-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+  .section-hdr h2{font-size:20px;font-weight:700;color:var(--navy);}
+  .section-hdr p{font-size:13px;color:var(--gray);margin-top:2px;}
+
+  /* CARDS */
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+  .card{background:#fff;border-radius:10px;border:1px solid #E0E0E0;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:box-shadow 0.2s,transform 0.2s;}
+  .card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.10);transform:translateY(-2px);}
+  .card-accent{height:5px;}
+  .card-body{padding:16px 18px;flex:1;}
+  .card-icon{font-size:24px;margin-bottom:10px;}
+  .card-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:5px;}
+  .card-desc{font-size:13px;color:var(--gray);line-height:1.5;}
+  .card-footer{padding:10px 18px;border-top:1px solid #F0F0F0;display:flex;align-items:center;justify-content:space-between;}
+  .card-tag{font-size:11px;font-weight:600;padding:2px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:0.5px;}
+  .card-arrow{font-size:16px;color:var(--gray);}
+
+  /* FOOTER */
+  footer{background:var(--navy);color:rgba(255,255,255,0.6);text-align:center;padding:28px 20px;font-size:13px;}
+  footer strong{color:#fff;}
+  footer a{color:var(--teal-light);text-decoration:none;}
+
+  @media(max-width:600px){
+    .hero h1{font-size:24px;}
+    .hero-meta{gap:12px;}
+    .hero-meta div{padding:8px 12px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">VLMIS · Zambia MoH EPI Programme</div>
+  <h1>VLMIS Mobile App<br><span>Training Resources</span></h1>
+  <p>Vaccine Logistics Management Information System — all training materials, job aids, and user guides in one place.</p>
+  <div class="hero-meta">
+    <div><div class="n">3</div><div class="l">Sections</div></div>
+    <div><div class="n">UAT</div><div class="l">Training Env</div></div>
+    <div><div class="n">Free</div><div class="l">Always Available</div></div>
+    <div><div class="n">Android</div><div class="l">Mobile Ready</div></div>
+  </div>
+</div>
+
+<!-- NOTICE -->
+<div class="notice">
+  <strong>Training environment:</strong> zm-epi-uat.openlmis-dev.org &nbsp;·&nbsp;
+  <strong>Production (go-live only):</strong> vlmis.moh.gov.zm &nbsp;·&nbsp;
+  <strong>Support:</strong> htss@moh.gov.zm
+</div>
+
+<div class="container">
+
+  <!-- ══ USER GUIDES ══════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-hdr">
+      <div class="section-icon" style="background:var(--teal-light);">📘</div>
+      <div>
+        <h2>User Guides</h2>
+        <p>Step-by-step guides covering all VLMIS app functions</p>
+      </div>
+    </div>
+    <div class="cards">
+
+      <a class="card" href="user-guides/vlmis-user-guide.html">
+        <div class="card-accent" style="background:var(--teal);"></div>
+        <div class="card-body">
+          <div class="card-icon">📱</div>
+          <div class="card-title">VLMIS Mobile App — User Guide</div>
+          <div class="card-desc">Complete step-by-step guide covering sign-in, dashboard, stock management, receive, issue, adjustments, physical count, POD, upload, and CCE.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag" style="background:var(--teal-light);color:var(--teal-dark);">Full Guide</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card" href="user-guides/vlmis-google-classroom-guide.html">
+        <div class="card-accent" style="background:#1a73e8;"></div>
+        <div class="card-body">
+          <div class="card-icon">🎓</div>
+          <div class="card-title">Google Classroom Setup Guide</div>
+          <div class="card-desc">How to create and structure the VLMIS training course on Google Classroom including assignments, quizzes, and completion tracking.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag" style="background:#E8F0FE;color:#1a73e8;">Classroom Guide</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ══ JOB AIDS ═════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-hdr">
+      <div class="section-icon" style="background:var(--green-light);">🃏</div>
+      <div>
+        <h2>Job Aids</h2>
+        <p>Quick reference cards for each app function — save to your phone for offline use</p>
+      </div>
+    </div>
+    <div class="cards">
+
+      <a class="card" href="job-aids/job-aid-receive.html">
+        <div class="card-accent" style="background:var(--green);"></div>
+        <div class="card-body">
+          <div class="card-icon">📦</div>
+          <div class="card-title">Receive Stock</div>
+          <div class="card-desc">Quick steps for recording incoming vaccine deliveries including lot numbers, expiry dates, and source facility.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag" style="background:var(--green-light);color:#155D30;">Job Aid</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card" href="job-aids/job-aid-issue.html">
+        <div class="card-accent" style="background:var(--green);"></div>
+        <div class="card-body">
+          <div class="card-icon">🚚</div>
+          <div class="card-title">Issue Stock</div>
+          <div class="card-desc">Quick steps for issuing vaccines using the FEFO rule — always issue the earliest expiry batch first.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag" style="background:var(--green-light);color:#155D30;">Job Aid</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card" href="job-aids/job-aid-adjustments.html">
+        <div class="card-accent" style="background:var(--green);"></div>
+        <div class="card-body">
+          <div class="card-icon">⚖️</div>
+          <div class="card-title">Adjustments</div>
+          <div class="card-desc">Quick reference for recording losses, expired stock, damages, and other stock corrections with the correct reason codes.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag" style="background:var(--green-light);color:#155D30;">Job Aid</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card" href="job-aids/job-aid-physical-count.html">
+        <div class="card-accent" style="background:var(--green);"></div>
+        <div class="card-body">
+          <div class="card-icon">🔢</div>
+          <div class="card-title">Physical Count</div>
+          <div class="card-desc">Step-by-step guide for conducting monthly stock verification — always count before daily transactions.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag" style="background:var(--green-light);color:#155D30;">Job Aid</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card" href="job-aids/job-aid-upload.html">
+        <div class="card-accent" style="background:var(--green);"></div>
+        <div class="card-body">
+          <div class="card-icon">☁️</div>
+          <div class="card-title">Upload Transactions</div>
+          <div class="card-desc">How to sync offline transactions to the server. Includes what to do if the upload fails.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag" style="background:var(--green-light);color:#155D30;">Job Aid</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card" href="job-aids/job-aid-pod.html">
+        <div class="card-accent" style="background:var(--green);"></div>
+        <div class="card-body">
+          <div class="card-icon">✅</div>
+          <div class="card-title">Proof of Delivery (POD)</div>
+          <div class="card-desc">Steps for confirming shipment receipt including accepted quantities, VVM status, and delivery information fields.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag" style="background:var(--green-light);color:#155D30;">Job Aid</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card" href="job-aids/job-aid-cce.html">
+        <div class="card-accent" style="background:var(--green);"></div>
+        <div class="card-body">
+          <div class="card-icon">❄️</div>
+          <div class="card-title">CCE Inventory</div>
+          <div class="card-desc">How to view cold chain equipment and update functional status — works offline and syncs automatically.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag" style="background:var(--green-light);color:#155D30;">Job Aid</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ══ TRAINING MATERIALS ═══════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-hdr">
+      <div class="section-icon" style="background:var(--purple-light);">🗂️</div>
+      <div>
+        <h2>Training Materials</h2>
+        <p>Resources for trainers and participants — agendas, assessments, and planning tools</p>
+      </div>
+    </div>
+    <div class="cards">
+
+      <a class="card" href="trainer-materials/training-agenda.html">
+        <div class="card-accent" style="background:var(--purple);"></div>
+        <div class="card-body">
+          <div class="card-icon">📋</div>
+          <div class="card-title">Virtual Training Agenda</div>
+          <div class="card-desc">Full 3-hour agenda for the VLMIS virtual training session with timings, topics, and assessment breakdown.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag" style="background:var(--purple-light);color:var(--purple);">Agenda</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card" href="trainer-materials/google-classroom-setup.html">
+        <div class="card-accent" style="background:var(--purple);"></div>
+        <div class="card-body">
+          <div class="card-icon">⚙️</div>
+          <div class="card-title">Google Classroom Setup</div>
+          <div class="card-desc">Step-by-step instructions for trainers to set up the VLMIS course on Google Classroom including all assignments and quiz questions.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag" style="background:var(--purple-light);color:var(--purple);">Trainer Guide</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card" href="trainer-materials/competency-assessment.html">
+        <div class="card-accent" style="background:var(--purple);"></div>
+        <div class="card-body">
+          <div class="card-icon">📝</div>
+          <div class="card-title">Competency Assessment</div>
+          <div class="card-desc">Knowledge quiz questions and practical assessment tasks for the VLMIS certification. Pass mark is 80 out of 100.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag" style="background:var(--purple-light);color:var(--purple);">Assessment</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card" href="trainer-materials/pre-registration-guide.html">
+        <div class="card-accent" style="background:var(--purple);"></div>
+        <div class="card-body">
+          <div class="card-icon">📝</div>
+          <div class="card-title">Participant Pre-Registration</div>
+          <div class="card-desc">What participants need to complete before the training session including app installation and credential setup.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag" style="background:var(--purple-light);color:var(--purple);">Pre-Training</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Zambia OpenLMIS Immunization Supply Chain Project (ZOISC)</strong><br>
+  UNICEF &nbsp;·&nbsp; MoH Zambia &nbsp;·&nbsp; OpenLMIS &nbsp;·&nbsp; 2025<br><br>
+  <a href="https://vlmis.moh.gov.zm">Production: vlmis.moh.gov.zm</a>
+  &nbsp;·&nbsp;
+  <a href="https://zm-epi-uat.openlmis-dev.org">Training: zm-epi-uat.openlmis-dev.org</a>
+  &nbsp;·&nbsp;
+  <a href="mailto:htss@moh.gov.zm">htss@moh.gov.zm</a>
+</footer>
+
+</body>
+</html>
