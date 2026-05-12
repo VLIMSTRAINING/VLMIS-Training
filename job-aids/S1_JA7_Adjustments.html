@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adjustments — VLMIS Job Aid | ZOISC</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap');
+  :root{
+    --teal:#028090;--teal-dk:#015F6B;--teal-lt:#E0F4F6;
+    --navy:#1A3558;--green:#198744;--green-lt:#E8F5E9;
+    --amber:#E77F2A;--amber-lt:#FFF3E0;
+    --red:#D32F2F;--red-lt:#FFEBEE;
+    --purple:#5C35A0;--purple-lt:#EDE7F6;
+    --gray:#546E7A;--gray-lt:#ECEFF1;
+    --white:#fff;--off:#F7FAFB;--black:#212121;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--black);line-height:1.6;font-size:14px;max-width:680px;margin:0 auto;}
+
+  /* HEADER */
+  .card-header{padding:18px 20px 14px;position:relative;overflow:hidden;}
+  .card-num{display:inline-block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:12px;margin-bottom:8px;color:#fff;}
+  .card-header h1{font-family:'DM Serif Display',serif;font-size:22px;color:#fff;line-height:1.2;margin-bottom:4px;}
+  .card-header p{font-size:12px;color:rgba(255,255,255,0.72);}
+  .header-wave{position:absolute;bottom:-1px;left:0;right:0;height:20px;overflow:hidden;}
+  .header-wave::after{content:'';position:absolute;bottom:0;left:-5%;width:110%;height:40px;background:var(--off);border-radius:50% 50% 0 0 / 20px;}
+
+  /* BODY */
+  .card-body{padding:16px 20px 24px;}
+
+  /* STEPS */
+  .steps{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+  .step{display:flex;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--gray-lt);}
+  .step-n{width:38px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#fff;}
+  .step-body{padding:10px 13px;flex:1;background:#fff;}
+  .step-body h4{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:3px;}
+  .step-body p{font-size:12.5px;color:var(--gray);line-height:1.5;}
+  .step-body ul{list-style:none;padding:0;margin-top:4px;}
+  .step-body li{font-size:12.5px;color:var(--gray);padding:3px 0;display:flex;gap:6px;border-bottom:1px solid var(--gray-lt);}
+  .step-body li:last-child{border-bottom:none;}
+  .step-body li::before{content:"›";color:inherit;flex-shrink:0;}
+  .step-body code{background:var(--gray-lt);padding:1px 5px;border-radius:4px;font-size:11px;font-family:monospace;color:var(--navy);}
+
+  /* ALERT */
+  .alert{border-radius:8px;padding:11px 14px;margin-bottom:12px;display:flex;gap:10px;align-items:flex-start;}
+  .alert-icon{font-size:15px;flex-shrink:0;margin-top:1px;}
+  .alert-text h4{font-size:12px;font-weight:700;margin-bottom:3px;}
+  .alert-text p{font-size:12.5px;line-height:1.5;}
+  .alert.tip{background:var(--amber-lt);border-left:3px solid var(--amber);}
+  .alert.tip h4{color:#A0531A;}
+  .alert.info{background:var(--teal-lt);border-left:3px solid var(--teal);}
+  .alert.info h4{color:var(--teal-dk);}
+  .alert.danger{background:var(--red-lt);border-left:3px solid var(--red);}
+  .alert.danger h4{color:var(--red);}
+  .alert.success{background:var(--green-lt);border-left:3px solid var(--green);}
+  .alert.success h4{color:#155D30;}
+
+  /* FIELD TABLE */
+  .ftable{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:12px;}
+  .ftable thead tr{background:var(--navy);}
+  .ftable th{padding:7px 10px;text-align:left;font-weight:600;color:#fff;font-size:11.5px;}
+  .ftable td{padding:7px 10px;border-bottom:1px solid var(--gray-lt);color:var(--gray);}
+  .ftable tr:nth-child(even) td{background:var(--off);}
+  .ftable tr:last-child td{border-bottom:none;}
+  .req{color:var(--red);font-weight:700;}
+
+  /* CHECKLIST */
+  .checklist{background:var(--teal-lt);border-radius:8px;padding:13px 15px;margin-top:12px;}
+  .checklist h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--teal-dk);margin-bottom:9px;}
+  .checklist ul{list-style:none;padding:0;}
+  .checklist li{display:flex;gap:8px;font-size:12.5px;color:var(--teal-dk);padding:5px 0;border-bottom:1px solid rgba(2,128,144,0.15);}
+  .checklist li:last-child{border-bottom:none;}
+  .cb{width:14px;height:14px;border:1.5px solid var(--teal);border-radius:3px;flex-shrink:0;margin-top:2px;}
+
+  /* REASON TABLE */
+  .reason-grid{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}
+  .reason{display:flex;gap:10px;align-items:flex-start;background:#fff;border-radius:8px;padding:9px 12px;border:1px solid var(--gray-lt);}
+  .reason-badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;flex-shrink:0;margin-top:1px;}
+  .reason-body h4{font-size:12.5px;font-weight:600;color:var(--navy);margin-bottom:1px;}
+  .reason-body p{font-size:12px;color:var(--gray);}
+
+  /* FOOTER */
+  footer{background:var(--navy);color:rgba(255,255,255,0.55);text-align:center;padding:14px 20px;font-size:11.5px;margin-top:8px;}
+  footer strong{color:#fff;}
+</style>
+</head>
+<body>
+<div class="card-header" style="background:#E77F2A;">
+  <div class="card-num" style="background:rgba(0,0,0,0.2);">Session 1 · Job Aid</div>
+  <h1>Adjustments</h1>
+  <p>Record losses, expiries, damages and stock corrections</p>
+  <div class="header-wave"></div>
+</div>
+<div class="card-body">
+<div class="alert info">
+  <div class="alert-icon">ℹ</div>
+  <div class="alert-text"><h4>System applies credit or debit automatically</h4><p>You do not choose whether stock increases or decreases. The system does this based on the reason you select. Always pick the most specific reason available.</p></div>
+</div>
+<h3 style='font-size:14px;font-weight:600;color:var(--navy);margin-bottom:10px;margin-top:4px;'>Adjustment reasons</h3>
+<div class="reason-grid"><div class="reason"><span class="reason-badge" style="background:#FFEBEE;color:#D32F2F">Reduces</span><div class="reason-body"><h4>Expired</h4><p>Vials past their expiry date</p></div></div><div class="reason"><span class="reason-badge" style="background:#FFEBEE;color:#D32F2F">Reduces</span><div class="reason-body"><h4>Damaged</h4><p>Broken or physically compromised vials</p></div></div><div class="reason"><span class="reason-badge" style="background:#FFEBEE;color:#D32F2F">Reduces</span><div class="reason-body"><h4>VVM Failed</h4><p>Vaccine Vial Monitor shows heat exposure</p></div></div><div class="reason"><span class="reason-badge" style="background:#FFEBEE;color:#D32F2F">Reduces</span><div class="reason-body"><h4>Missing</h4><p>On system but cannot be located physically</p></div></div><div class="reason"><span class="reason-badge" style="background:#E8F5E9;color:#155D30">Increases</span><div class="reason-body"><h4>Found in Store</h4><p>Physical stock found not on system records</p></div></div><div class="reason"><span class="reason-badge" style="background:#FFF3E0;color:#A0531A">Depends</span><div class="reason-body"><h4>Other Adjustment</h4><p>Any other correction — always add a description</p></div></div></div>
+<h3 style='font-size:14px;font-weight:600;color:var(--navy);margin-bottom:10px;margin-top:4px;'>Steps</h3>
+<div class="steps">
+<div class="step">
+  <div class="step-n" style="background:#E77F2A">1</div>
+  <div class="step-body"><h4>Open Adjustments</h4><p>Tap <strong>Adjustments</strong> → select programme → enter date → tap <strong>Proceed</strong>.</p></div>
+</div>
+<div class="step">
+  <div class="step-n" style="background:#E77F2A">2</div>
+  <div class="step-body"><h4>Select product & batch</h4><p>Find the product in the list and tap it. Select the correct batch.</p></div>
+</div>
+<div class="step">
+  <div class="step-n" style="background:#E77F2A">3</div>
+  <div class="step-body"><h4>Enter reason & quantity</h4><ul><li><strong>Reason</strong>: select from dropdown — most specific reason available</li><li><strong>Quantity</strong>: number of doses affected</li><li>System automatically applies the credit or debit</li></ul></div>
+</div>
+<div class="step">
+  <div class="step-n" style="background:#198744">4</div>
+  <div class="step-body"><h4>Submit & confirm</h4><p>Tap <strong>Submit</strong> → confirm. The bin card records the change with date and reason for full traceability.</p></div>
+</div>
+</div>
+<div class="checklist"><h4>✓ Practice checklist</h4><ul><li><span class='cb'></span>Open Adjustments → select product → select TRAINING001 batch</li><li><span class='cb'></span>Record: reason = Expired, quantity = 3 → verify SOH reduced</li><li><span class='cb'></span>Record: reason = Found in Store, quantity = 2 → verify SOH increased</li><li><span class='cb'></span>Open the bin card and confirm both adjustments appear</li></ul></div>
+</div>
+<footer>
+  <strong>ZOISC · UNICEF · JSI · MoH Zambia</strong><br>
+  Training: zm-epi-uat.openlmis-dev.org &nbsp;|&nbsp; Production: vlmis.moh.gov.zm
+</footer>
+</body>
+</html>
