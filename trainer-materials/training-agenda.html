@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VLMIS Training Agenda | Zambia MoH EPI</title>
+<style>
+  :root {
+    --teal:#028090; --teal-dark:#015F6B; --teal-light:#E0F4F6;
+    --navy:#1A3558; --green:#198744; --green-light:#E8F5E9;
+    --amber:#E77F2A; --amber-light:#FFF3E0;
+    --purple:#5C35A0; --purple-light:#EDE7F6;
+    --gray:#546E7A; --gray-light:#ECEFF1;
+    --white:#FFFFFF; --off-white:#F7FAFB; --black:#212121;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--off-white);color:var(--black);line-height:1.6;}
+
+  /* HERO */
+  .hero{background:var(--navy);color:#fff;padding:48px 24px 56px;text-align:center;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;border-radius:50%;background:rgba(2,128,144,0.15);}
+  .hero-badge{display:inline-block;background:var(--teal);color:#fff;font-size:11px;font-weight:700;letter-spacing:2px;padding:5px 16px;border-radius:20px;margin-bottom:20px;text-transform:uppercase;}
+  .hero h1{font-size:32px;font-weight:700;margin-bottom:10px;line-height:1.2;position:relative;}
+  .hero h1 span{color:#7FD8E0;}
+  .hero p{font-size:15px;color:rgba(255,255,255,0.75);max-width:540px;margin:0 auto 24px;position:relative;}
+  .hero-meta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;position:relative;}
+  .hero-meta div{background:rgba(255,255,255,0.10);border-radius:8px;padding:10px 18px;text-align:center;}
+  .hero-meta .n{font-size:18px;font-weight:700;color:#fff;}
+  .hero-meta .l{font-size:10px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
+
+  /* NOTICE */
+  .notice{background:var(--amber-light);border-top:4px solid var(--amber);padding:12px 24px;text-align:center;font-size:13px;color:#6B3A0F;}
+  .notice strong{color:var(--amber);}
+
+  /* MAIN */
+  .container{max-width:860px;margin:0 auto;padding:36px 20px 60px;}
+
+  /* PROGRESS BAR */
+  .progress-wrap{background:#fff;border-radius:10px;border:1px solid #E0E0E0;padding:14px 20px;margin-bottom:24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .progress-label{font-size:13px;font-weight:700;color:var(--navy);white-space:nowrap;}
+  .progress-bar-bg{flex:1;background:var(--gray-light);border-radius:20px;height:12px;min-width:120px;}
+  .progress-bar-fill{height:12px;border-radius:20px;background:var(--teal);transition:width 0.4s ease;}
+  .progress-count{font-size:13px;font-weight:700;color:var(--teal);white-space:nowrap;}
+  .reset-btn{font-size:12px;color:var(--gray);background:none;border:1px solid #E0E0E0;border-radius:6px;padding:4px 10px;cursor:pointer;}
+  .reset-btn:hover{background:var(--gray-light);}
+
+  /* PRE-SESSION */
+  .pre-section{background:#fff;border-radius:12px;border:1px solid #E0E0E0;overflow:hidden;margin-bottom:24px;}
+  .pre-section-hdr{background:var(--gray);padding:13px 20px;display:flex;align-items:center;gap:10px;}
+  .pre-section-hdr h2{font-size:15px;font-weight:700;color:#fff;}
+
+  /* SESSION BLOCK */
+  .session{background:#fff;border-radius:12px;border:1px solid #E0E0E0;overflow:hidden;margin-bottom:24px;}
+  .session-hdr{padding:14px 20px;display:flex;align-items:center;gap:12px;}
+  .session-badge{font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;}
+  .session-hdr h2{font-size:16px;font-weight:700;color:var(--navy);}
+  .session-hdr .dur{margin-left:auto;font-size:12px;color:var(--gray);font-weight:600;}
+
+  /* TABLE */
+  table{width:100%;border-collapse:collapse;}
+  thead tr{background:var(--navy);}
+  thead th{padding:10px 16px;text-align:left;font-size:12px;font-weight:600;color:#fff;letter-spacing:0.5px;}
+  thead th:first-child{width:52px;text-align:center;}
+  thead th:nth-child(2){width:90px;text-align:center;}
+  tbody tr{border-bottom:1px solid #F0F0F0;transition:background 0.2s;}
+  tbody tr:last-child{border-bottom:none;}
+  tbody tr:nth-child(even){background:var(--off-white);}
+  tbody tr.break-row{background:#F5F5F5;}
+  tbody tr.done{background:#E8F5E9 !important;}
+  tbody tr.done td.topic{color:#155D30;text-decoration:line-through;text-decoration-color:#198744;}
+  tbody tr.done td.time{color:#198744;}
+  td{padding:11px 16px;font-size:13.5px;vertical-align:middle;}
+  td.cb-cell{text-align:center;width:52px;padding:11px 8px;}
+  td.time{text-align:center;font-weight:700;color:var(--gray);font-size:13px;white-space:nowrap;}
+  td.topic{color:var(--black);}
+  td.topic.break-text{color:var(--gray);font-style:italic;}
+
+  /* CHECKBOX STYLING */
+  .row-cb{width:20px;height:20px;border-radius:5px;border:2px solid #CBD5E0;cursor:pointer;appearance:none;-webkit-appearance:none;background:#fff;position:relative;transition:all 0.15s;flex-shrink:0;}
+  .row-cb:hover{border-color:var(--teal);}
+  .row-cb:checked{background:var(--teal);border-color:var(--teal);}
+  .row-cb:checked::after{content:'';position:absolute;left:5px;top:2px;width:6px;height:10px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg);}
+
+  /* PRE-REQ LIST CHECKBOXES */
+  .prereq-list{padding:0;list-style:none;}
+  .prereq-list li{display:flex;gap:12px;align-items:center;padding:11px 16px;border-bottom:1px solid #F0F0F0;font-size:13.5px;color:var(--black);transition:background 0.2s;cursor:pointer;}
+  .prereq-list li:last-child{border-bottom:none;}
+  .prereq-list li.done{background:#E8F5E9;}
+  .prereq-list li.done .prereq-text{color:#155D30;text-decoration:line-through;text-decoration-color:#198744;}
+  .prereq-list li span.prereq-time{color:var(--gray);font-size:12px;margin-left:auto;white-space:nowrap;flex-shrink:0;}
+  .prereq-cb{width:20px;height:20px;border-radius:5px;border:2px solid #CBD5E0;cursor:pointer;appearance:none;-webkit-appearance:none;background:#fff;position:relative;transition:all 0.15s;flex-shrink:0;}
+  .prereq-cb:hover{border-color:var(--teal);}
+  .prereq-cb:checked{background:var(--teal);border-color:var(--teal);}
+  .prereq-cb:checked::after{content:'';position:absolute;left:5px;top:2px;width:6px;height:10px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg);}
+
+  /* CERT BOX */
+  .cert-box{background:var(--amber-light);border-left:5px solid var(--amber);border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:24px;}
+  .cert-box h3{font-size:13px;font-weight:700;color:#8B4000;margin-bottom:6px;}
+  .cert-box p{font-size:13px;color:#6B3A0F;line-height:1.6;}
+
+  /* QUICK REF */
+  .quick-ref{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:24px;}
+  .ref-card{background:#fff;border-radius:10px;border:1px solid #E0E0E0;padding:14px 16px;}
+  .ref-card h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+  .ref-card p{font-size:12.5px;color:var(--gray);}
+
+  /* LEGEND */
+  .legend{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:20px;padding:12px 16px;background:#fff;border-radius:8px;border:1px solid #E0E0E0;}
+  .legend-item{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--gray);}
+  .legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+  /* FOOTER */
+  footer{background:var(--navy);color:rgba(255,255,255,0.6);text-align:center;padding:24px 20px;font-size:13px;margin-top:48px;}
+  footer strong{color:#fff;}
+  footer a{color:#7FD8E0;text-decoration:none;}
+
+  @media print{
+    .progress-wrap,.reset-btn{display:none;}
+    body{background:#fff;}
+    .hero{background:var(--navy)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .session-hdr,.pre-section-hdr,thead tr{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    footer{display:none;}
+  }
+  @media(max-width:600px){
+    .hero h1{font-size:24px;}
+    .hero-meta div{padding:8px 12px;}
+    td{padding:9px 10px;font-size:13px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">VLMIS - Zambia MoH EPI Programme</div>
+  <h1>Mobile App Training<br><span>Session Agenda</span></h1>
+  <p>Vaccine Logistics Management Information System: virtual training schedule for participants and trainers.</p>
+  <div class="hero-meta">
+    <div><div class="n">3 hrs</div><div class="l">Total Duration</div></div>
+    <div><div class="n">Virtual</div><div class="l">Zoom / Meet</div></div>
+    <div><div class="n">Android</div><div class="l">App Required</div></div>
+    <div><div class="n">80%</div><div class="l">Pass Mark</div></div>
+  </div>
+</div>
+
+<!-- NOTICE -->
+<div class="notice">
+  <strong>Training environment:</strong> zm-epi-uat.openlmis-dev.org &nbsp;·&nbsp;
+  <strong>Production (go-live only):</strong> vlmis.moh.gov.zm &nbsp;·&nbsp;
+  <strong>Support:</strong> <a href="https://chat.whatsapp.com/HGhJXQmXjM89aYw4WQuMp7?mode=gi_t" style="color:#8B4000;font-weight:700;" target="_blank">Join WhatsApp Support Group</a>
+</div>
+
+<div class="container">
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-wrap">
+    <span class="progress-label">Your progress:</span>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+    </div>
+    <span class="progress-count" id="progressCount">0 of 18 done</span>
+    <button class="reset-btn" onclick="resetAll()">Reset</button>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--gray);"></div> Pre-session</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--teal);"></div> Session 1: Stock Management</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--purple);"></div> Session 2: Advanced Features</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--amber);"></div> Competency Assessment</div>
+  </div>
+
+  <!-- PRE-SESSION -->
+  <div class="pre-section">
+    <div class="pre-section-hdr">
+      <span style="font-size:16px;">&#9200;</span>
+      <h2>Before the Session: Complete Prior to Joining</h2>
+    </div>
+    <ul class="prereq-list" id="prereqList">
+      <li >
+        <input type="checkbox" class="prereq-cb" >
+        <span class="prereq-text">Install the VLMIS APK on your Android phone using the file shared via WhatsApp</span>
+        <span class="prereq-time">Before session</span>
+      </li>
+      <li >
+        <input type="checkbox" class="prereq-cb" >
+        <span class="prereq-text">Sign in on Wi-Fi using the credentials sent to your email by the trainer</span>
+        <span class="prereq-time">Before session</span>
+      </li>
+      <li >
+        <input type="checkbox" class="prereq-cb" >
+        <span class="prereq-text">Download and read the VLMIS User Guide from Google Classroom (Topic 1)</span>
+        <span class="prereq-time">Before session</span>
+      </li>
+      <li >
+        <input type="checkbox" class="prereq-cb" >
+        <span class="prereq-text">Submit your pre-session screenshot assignment in Google Classroom</span>
+        <span class="prereq-time">Before session</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SESSION 1 -->
+  <div class="session">
+    <div class="session-hdr" style="background:var(--teal-light);border-bottom:1px solid #B2DFE4;">
+      <span class="session-badge" style="background:var(--teal);color:#fff;">Session 1</span>
+      <h2>Stock Management Basics</h2>
+      <span class="dur">80 min</span>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Done</th><th>Time</th><th>Topic</th></tr>
+      </thead>
+      <tbody>
+        <tr >
+          <td class="cb-cell"><input type="checkbox" class="row-cb" ></td>
+          <td class="time">00:00</td>
+          <td class="topic">Welcome, housekeeping and training objectives</td>
+        </tr>
+        <tr >
+          <td class="cb-cell"><input type="checkbox" class="row-cb" ></td>
+          <td class="time">00:10</td>
+          <td class="topic">Getting started: sign in and home dashboard</td>
+        </tr>
+        <tr >
+          <td class="cb-cell"><input type="checkbox" class="row-cb" ></td>
+          <td class="time">00:20</td>
+          <td class="topic">Sync reference data</td>
+        </tr>
+        <tr >
+          <td class="cb-cell"><input type="checkbox" class="row-cb" ></td>
+          <td class="time">00:30</td>
+          <td class="topic">Facility stock (SOH): viewing stock on hand</td>
+        </tr>
+        <tr >
+          <td class="cb-cell"><input type="checkbox" class="row-cb" ></td>
+          <td class="time">00:40</td>
+          <td class="topic">Receive stock: recording incoming vaccines</td>
+        </tr>
+        <tr >
+          <td class="cb-cell"><input type="checkbox" class="row-cb" ></td>
+          <td class="time">00:55</td>
+          <td class="topic">Issue stock: FEFO rule and outgoing vaccines</td>
+        </tr>
+        <tr >
+          <td class="cb-cell"><input type="checkbox" class="row-cb" ></td>
+          <td class="time">01:10</td>
+          <td class="topic">Session 1 quick check: 3-question poll (Google Classroom, Topic 2)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BREAK -->
+  <div class="session">
+    <div class="session-hdr" style="background:#F5F5F5;border-bottom:1px solid #E0E0E0;">
+      <span class="session-badge" style="background:var(--gray);color:#fff;">Break</span>
+      <h2 style="color:var(--gray);">Comfort Break</h2>
+      <span class="dur">10 min</span>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Done</th><th>Time</th><th>Topic</th></tr>
+      </thead>
+      <tbody>
+        <tr class="break-row" >
+          <td class="cb-cell"><input type="checkbox" class="row-cb" ></td>
+          <td class="time">01:20</td>
+          <td class="topic break-text">Break: trainer posts Facility Stock job aid card to WhatsApp group</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SESSION 2 -->
+  <div class="session">
+    <div class="session-hdr" style="background:var(--purple-light);border-bottom:1px solid #C8B8E8;">
+      <span class="session-badge" style="background:var(--purple);color:#fff;">Session 2</span>
+      <h2>Advanced Features</h2>
+      <span class="dur">60 min</span>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Done</th><th>Time</th><th>Topic</th></tr>
+      </thead>
+      <tbody>
+        <tr >
+          <td class="cb-cell"><input type="checkbox" class="row-cb" ></td>
+          <td class="time">01:30</td>
+          <td class="topic">Adjustments: losses, damages, and corrections</td>
+        </tr>
+        <tr >
+          <td class="cb-cell"><input type="checkbox" class="row-cb" ></td>
+          <td class="time">01:45</td>
+          <td class="topic">Physical count: monthly stock verification</td>
+        </tr>
+        <tr >
+          <td class="cb-cell"><input type="checkbox" class="row-cb" ></td>
+          <td class="time">02:00</td>
+          <td class="topic">Upload transactions: syncing to the server</td>
+        </tr>
+        <tr >
+          <td class="cb-cell"><input type="checkbox" class="row-cb" ></td>
+          <td class="time">02:10</td>
+          <td class="topic">Proof of delivery (POD): confirming shipments</td>
+        </tr>
+        <tr >
+          <td class="cb-cell"><input type="checkbox" class="row-cb" ></td>
+          <td class="time">02:20</td>
+          <td class="topic">CCE inventory: cold chain equipment status</td>
+        </tr>
+        <tr >
+          <td class="cb-cell"><input type="checkbox" class="row-cb" ></td>
+          <td class="time">02:28</td>
+          <td class="topic">Session 2 quick check: 3-question poll (Google Classroom, Topic 4)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ASSESSMENT -->
+  <div class="session">
+    <div class="session-hdr" style="background:var(--amber-light);border-bottom:1px solid #F5C89A;">
+      <span class="session-badge" style="background:var(--amber);color:#fff;">Assessment</span>
+      <h2>Competency Assessment</h2>
+      <span class="dur">30 min</span>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Done</th><th>Time</th><th>Topic</th></tr>
+      </thead>
+      <tbody>
+        <tr >
+          <td class="cb-cell"><input type="checkbox" class="row-cb" ></td>
+          <td class="time">02:30</td>
+          <td class="topic">Knowledge quiz (Part A): 10 questions, 50 pts &nbsp;<span style="background:var(--amber-light);color:#8B4000;font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600;">Google Classroom, Topic 5</span></td>
+        </tr>
+        <tr >
+          <td class="cb-cell"><input type="checkbox" class="row-cb" ></td>
+          <td class="time">02:45</td>
+          <td class="topic">Practical assessment (Part B): 7 tasks in UAT environment, 50 pts &nbsp;<span style="background:var(--amber-light);color:#8B4000;font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600;">12 min timed</span></td>
+        </tr>
+        <tr >
+          <td class="cb-cell"><input type="checkbox" class="row-cb" ></td>
+          <td class="time">02:57</td>
+          <td class="topic">Q&amp;A, troubleshooting recap, and close</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CERT BOX -->
+  <div class="cert-box">
+    <h3>&#127885; Certification</h3>
+    <p>Pass mark is <strong>80 out of 100</strong> (Knowledge Quiz 50 pts + Practical Assessment 50 pts). Certificates will be issued via Google Classroom and WhatsApp within <strong>48 hours</strong> of the session. Participants who score below 80% will be contacted to arrange a 30-minute remediation session before re-attempting the practical assessment only.</p>
+  </div>
+
+  <!-- QUICK REF -->
+  <div class="quick-ref">
+    <div class="ref-card">
+      <h4 style="color:var(--teal-dark);">&#127760; Training environment</h4>
+      <p>zm-epi-uat.openlmis-dev.org</p>
+    </div>
+    <div class="ref-card">
+      <h4 style="color:#1a73e8;">&#127891; Google Classroom</h4>
+      <p>classroom.google.com</p>
+    </div>
+    <div class="ref-card">
+      <h4 style="color:#198744;">&#128172; WhatsApp Support</h4>
+      <p><a href="https://chat.whatsapp.com/HGhJXQmXjM89aYw4WQuMp7?mode=gi_t" style="color:#198744;" target="_blank">Join the Support Group</a></p>
+    </div>
+    <div class="ref-card">
+      <h4 style="color:var(--green);">&#128640; Production (go-live only)</h4>
+      <p>vlmis.moh.gov.zm</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Zambia OpenLMIS Immunization Supply Chain Project (ZOISC)</strong><br>
+  UNICEF &nbsp;·&nbsp; MoH Zambia &nbsp;·&nbsp; OpenLMIS &nbsp;·&nbsp; 2025<br><br>
+  <a href="https://vlmis.moh.gov.zm">Production: vlmis.moh.gov.zm</a>
+  &nbsp;·&nbsp;
+  <a href="https://zm-epi-uat.openlmis-dev.org">Training: zm-epi-uat.openlmis-dev.org</a>
+  &nbsp;·&nbsp;
+  <a href="https://chat.whatsapp.com/HGhJXQmXjM89aYw4WQuMp7?mode=gi_t" target="_blank">WhatsApp Support Group</a>
+</footer>
+
+<script>
+  var TOTAL = 18;
+
+  function updateProgress() {
+    var checked = document.querySelectorAll('.row-cb:checked, .prereq-cb:checked').length;
+    var pct = Math.round((checked / TOTAL) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressCount').textContent = checked + ' of ' + TOTAL + ' done';
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.row-cb, .prereq-cb').forEach(function(cb) {
+      cb.checked = false;
+      cb.dispatchEvent(new Event('change'));
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+
+    /* ── Table row checkboxes ── */
+    document.querySelectorAll('tbody tr').forEach(function (tr) {
+      var cb = tr.querySelector('.row-cb');
+      if (!cb) return;
+
+      /* Clicking anywhere on the row toggles the checkbox */
+      tr.addEventListener('click', function (e) {
+        if (e.target !== cb) {          /* avoid double-toggle when clicking cb directly */
+          cb.checked = !cb.checked;
+          cb.dispatchEvent(new Event('change'));
+        }
+      });
+
+      /* The checkbox change event does the visual work */
+      cb.addEventListener('change', function () {
+        if (cb.checked) {
+          tr.classList.add('done');
+        } else {
+          tr.classList.remove('done');
+        }
+        updateProgress();
+      });
+    });
+
+    /* ── Pre-session list checkboxes ── */
+    document.querySelectorAll('.prereq-list li').forEach(function (li) {
+      var cb = li.querySelector('.prereq-cb');
+      if (!cb) return;
+
+      li.addEventListener('click', function (e) {
+        if (e.target !== cb) {
+          cb.checked = !cb.checked;
+          cb.dispatchEvent(new Event('change'));
+        }
+      });
+
+      cb.addEventListener('change', function () {
+        if (cb.checked) {
+          li.classList.add('done');
+        } else {
+          li.classList.remove('done');
+        }
+        updateProgress();
+      });
+    });
+
+  });
+</script>
+
+</body>
+</html>
